@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.extend 拓展实例构造器</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Vue.extend 拓展实例构造器</h1>
+    <hr>
+    <div id="author"></div>
+    <script>
+        //定义一个拓展构造器
+        var authorExtend = Vue.extend({
+            template : "<p><a :href='authorUrl'>{{author}}</a></p>",
+            data : function () {
+                return {
+                    authorUrl : "http://www.baidu.com",
+                    author : "baidu"
+                }
+            }
+        })
+
+        //向元素上挂载
+        new authorExtend().$mount("#author");
+    </script>
+</body>
+</html>

@@ -11,14 +11,40 @@
     <h1>Vue.directive 自定义指令</h1>
     <hr>
     <div id="app">
-        <p>{{count}}</p>
+        <p v-me="color">{{count}}</p>
         <button v-on:click="add">add</button>
     </div>
+    <p>
+        <button onclick="unbind()">解绑</button>
+    </div>
     <script>
+        function unbind(){
+            app.$destroy();
+        }
+        Vue.directive("me", {
+            bind:function(el, binding, vnode) {
+                console.log(vnode);
+                el.style.color = binding.value;
+                console.log("1-bind");
+            },
+            inserted:function(el, binding) {
+                console.log("2-inserted");
+            },
+            update:function (el, binding) {
+                console.log("3-update");
+            },
+            componentUpdated:function(el, binding) {
+                console.log("4-componentUpdated");
+            },
+            unbind:function(el, binding){
+                console.log("5-unbind");
+            }
+        })
         var app = new Vue({
             el : "#app",
             data : {
-                count : 0
+                count : 0,
+                color : "red"
             },
             methods : {
                 add : function () {
