@@ -1,0 +1,28 @@
+﻿2019-1-7 
+初步了解vue，
+cnpm install - g live-server node的服务器 live-server 执行
+渲染字符串 {{message}}
+v-if <div v-if="isTrue">if</div> 是否渲染
+v-else <div v-else>else</div> 与if配套使用
+v-show <div v-show="isShow">show</div> 通过dispaly显示隐藏
+v-for <li v-for="item in items">{{item}}</li> 循环 computed 对象 返回 items
+comouted : {
+    sortItems : function(){
+        return this.items.sort((a, b) => a - b);
+    }
+}
+
+2019-1-8
+v-text 渲染文字
+v-html 渲染html （不推荐使用）
+v-on 绑定事件<button v-on:click="clickFun">按钮</button> app中添加methods属性，methods:{clickFun:function(){事件}}
+v-model 数据源绑定 双向绑定实现 修饰符：.lazy 像失去焦点事件 .number 内容为数字 .trim 内容去空格 
+<input type="checkbox" v-model="isTrue"> 单个复选框选中
+<input type="checkbox" value="a" v-model="names"><input type="checkbox" value="b" v-model="names"> 多个复选框 names为一个数组
+<input type="radio" value="男" v-model="sex"><input type="radio" value="女" v-model="sex"> 单选框
+
+2019-1-9
+v-bind 绑定元素的属性<div v-bind:class="class"> 判断 <div :class={class:isOk}> 对象 <div :style="{obj}"> obj : {coler:"red",fontSize:"12px"}
+v-pre 显示原始代码 {{message}}
+v-cloak 整个都渲染完才显示
+v-once 只显示首次渲染的内容

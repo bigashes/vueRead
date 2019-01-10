@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-bind</h1>
+    <hr>
+    <div id="app">
+        <img v-bind:src="imgSrc" :width="imgWidth">
+        <p><a :href="href">猿屋舍</a></p>
+        <hr>
+        <div :class="classA">1、绑定class</div>
+        <div :class="{classA:isOk}">2、判断绑定class</div>
+        <div :class="isOk ? classA : classB">3、三元绑定class</div>
+        <hr>
+        <input type="checkbox" v-model="isOk" id="isOk">
+        <label for="isOk">isOk={{isOk}}</label>
+        <hr>
+        <div :class="[classA,classB]">4、class绑定数组</div>
+        <div :style="{color:red,fontSize:size}">5、绑定style</div>
+        <div :style="style">6、对象绑定style</div>
+    </div>
+    <style>
+        .classA{
+            color:red;
+        }
+        .classB{
+            font-weight: 600;
+        }
+    </style>
+    <script>
+        var app = new Vue({
+            el : "#app",
+            data : {
+                imgSrc : "https://yuanwushe.com/Uploads/image/20180325/1521990083277275.jpg",
+                imgWidth : "200px",
+                href:"https://www.yuanwushe.com",
+                classA : "classA",
+                isOk : true,
+                classB : "classB",
+                red : "red",
+                size : "20px",
+                style : {
+                    color : "red",
+                    fontSize : "12px"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

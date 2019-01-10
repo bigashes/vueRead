@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model 数据源绑定</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-model 数据源绑定</h1>
+    <hr>
+    <div id="app">
+        <p>原始数据：{{message}}</p>
+        <p>model：<input type="text" v-model="message"></p>
+        <p>model.lazy：<input type="text" v-model.lazy="message"></p>
+        <p>model.number：<input type="text" v-model.number="message"></p>
+        <p>model.trim：<input type="text" v-model.trim="message"></p>
+        <hr>
+        <h3>文本框</h3>
+        <textarea cols="30" rows="10" v-model="message"></textarea>
+        <hr>
+        <h3>单选复选框：{{isCheck}}</h3>
+        <input type="checkbox" v-model="isCheck">
+        <hr>
+        <h3>复选框：{{names}}</h3>
+        <input type="checkbox" id="a" value="a" v-model="names">
+        <label for="a">a</label>
+        <input type="checkbox" id="b" value="b" v-model="names">
+        <label for="b">b</label>
+        <input type="checkbox" id="c" value="c" v-model="names">
+        <label for="c">c</label>
+        <hr>
+        <h3>单选框：{{sex}}</h3>
+        <input type="radio" id="d" value="男" v-model="sex">
+        <label for="d">男</label>
+        <input type="radio" id="e" value="女" v-model="sex">
+        <label for="e">女</label>
+    </div>
+    <script>
+        var app = new Vue({
+            el : "#app",
+            data : {
+                message : "Hellor World",
+                isCheck : true,
+                names : [],
+                sex : "男"
+            }
+        })
+    </script>
+</body>
+</html>
