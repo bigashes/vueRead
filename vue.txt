@@ -6,7 +6,7 @@ v-if <div v-if="isTrue">if</div> 是否渲染
 v-else <div v-else>else</div> 与if配套使用
 v-show <div v-show="isShow">show</div> 通过dispaly显示隐藏
 v-for <li v-for="item in items">{{item}}</li> 循环 computed 对象 返回 items
-comouted : {
+computed : {
     sortItems : function(){
         return this.items.sort((a, b) => a - b);
     }
@@ -48,7 +48,7 @@ Vue.directive("me", {
 })
 Vue.extend 拓展实例构造器 没搞明白，像静态的自定义组件一样
 var meExtend = Vue.extend({
-    tempate : "<p><a :href="url">{{name}}</a></p>",
+    template : "<p><a :href="url">{{name}}</a></p>",
     data : function (){
         return {
             url : "http://www.baidu.com",
@@ -61,3 +61,48 @@ Vue.set 全局操作方法 给参数重新赋值之类的 在构造器引用外�
 就无法将数据渲染到页面上去，这时就需要Vue.set方法了 Vue.set(app.data, 1, "dddd"); 变量，下标，内容 Vue.set(app, "count", 2) vue对象，参数名，内容
 Vue生命周期 beforCreate 初始化之前 created 初始化之后 beforMount 挂载到元素之前 mounted 挂载到元素之后 beforUpdate 更新数据之前 updated 更新数据之后 
 beforDesTroy 销毁之前 destoryed 销毁之后 
+
+2019-1-12
+template 定义模板 可以认为是替换挂载元素 也可以说是基础组件 多种方式定义 定义到初始化中new Vue({el:"#app", template : `<h2>1</h2>`})，定义到
+template标签中 <template id="t1"><h2>1</h2></template> new Vue({el:"#app", template : "#t1"})，定义到srcipt中 <srcipt type="x-template" id="t2"></srcipt>
+new Vue({el:"#app", template : "#t2"}) 注意type="x-template";
+
+component 自定义组件（自定义标签）定义全局组件 Vue.component("my-tag", {template:`<div>1</div>`}) 定义局部组件实例化中选项components
+components : {"my-app-tag" : {template : `<div>2</div>`}} 注意 组件名中最好不要有大写，大写会转成小写标签，components中 定义的要带引号，
+否则会不成功
+
+component props 属性设置 <my-tag name="技术"></my-tag> 
+components : {
+    "my-app-tag" : {
+        template : `<div>这是{{name}}</div>`,
+        props : ["name"]
+        }
+    }
+也可以动态设置属性内容，使用v-bind 指令就可以，注意 vue不支持"-"，最好避免，使用"-"是用小驼峰的写法表示 "my-name" -> "myName"
+
+component 父子组件使用 记住伦理关系，
+var author = {
+    template : `<p>来自百度</p>`
+}
+
+var mytag = {
+    template: `
+        <div>
+            <p>你好啊，{{name}}</p>
+            <author></author>
+        </div>
+    `,
+    props:["name"],
+    components : {
+        "author" : author
+    }
+
+}
+var app = new Vue({
+    el: "#app",
+    components: {
+        "mytag" : mytag
+    }
+})
+
+component标签 <component></component> 是用来动态显示自定义标签的，通过is属性来选择显示哪一个标签is="componentA"，这个属性也可以绑定v-bind:is="who"

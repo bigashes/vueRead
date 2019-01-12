@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component_1 定义自定义组件</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>component_1 定义自定义组件</h1>
+    <hr>
+    <div id="app">
+        <my-tag></my-tag>
+        <my-app-tag></my-app-tag>
+    </div>
+    <script>
+        //全局自定义组件
+        Vue.component("my-tag", {
+            template : `
+                <div style="color:red;">定义全局的自定义组件</div>
+            `
+        })
+        //局部自定义组件
+        var app = new Vue({
+            el : "#app",
+            components:{
+                "my-app-tag" : {
+                    template : `
+                        <div style="color:green;">定义局部的自定义组件</div>
+                    `
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template 模板</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+    <h1>template 模板</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <div id="app2"></div>
+    <template id="t1">
+        <h2 style="color:blue;">这是一个template标签模板</h2>
+    </template>
+
+    <div id="app3"></div>
+    <script type="text/x-template" id="t2">
+        <h2>这是一个script template模板</h2>
+    </script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "Hellor World"
+            },
+            template: `
+                <h2 style="color:red;">这是一个template模板</h2>
+            `
+        })
+
+        var app2 = new Vue({
+            el: "#app2",
+            template: "#t1"
+        })
+
+        var app3 = new Vue({
+            el: "#app3",
+            template: "#t2"
+        })
+    </script>
+</body>
+
+</html>

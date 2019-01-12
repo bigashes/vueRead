@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component_1 定义自定义组件</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>component_1 定义自定义组件</h1>
+    <hr>
+    <div id="app">
+        <my-tag :name="name"></my-tag>
+    </div>
+    <script>
+        var app = new Vue({
+            el : "#app",
+            data : {
+                name : "很强大的技术"
+            },
+            components:{
+                "my-tag" : {
+                    template : `
+                        <div style="color:green;">这是{{name}}</div>
+                    `,
+                    props : ["name"]
+                }
+            }
+        })
+    </script>
+</body>
+</html>
