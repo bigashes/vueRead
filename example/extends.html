@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>extends 拓展选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>extends 拓展选项</h1>
+    <hr>
+    <div id="app">
+        <p>${num}</p>
+        <button @click="add">add</button>
+    </div>
+    <script>
+        var extendObj = {
+            updated : function () {
+                console.log("拓展改变事件");
+            }
+        }
+
+        var app = new Vue({
+            el : "#app",
+            data : {
+                num : 0
+            },
+            methods : {
+                add : function () {
+                    this.num++;
+                }
+            },
+            updated : function (){
+                console.log("局部改变事件");
+            },
+            extends : extendObj,
+            delimiters : ["${", "}"]
+        })
+
+    </script>
+</body>
+</html>

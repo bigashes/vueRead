@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HollerWorld</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Hellor World</h1>
+    <hr>
+    <header></header>
+    <script>
+        var header_a = Vue.extend({
+            template : `<p>{{message}}-{{b}}-{{a}}</p>`,
+            data : function (){
+                return {
+                    message : "拓展header",
+                    b : this.a
+                }
+            },
+            props : ["a"]
+        })
+        new header_a({propsData:{a:222}}).$mount("header");
+    </script>
+</body>
+</html>

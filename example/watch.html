@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch 选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>watch 选项</h1>
+    <hr>
+    <div id="app">
+        <p>今天温度：{{newCount}}</p>
+        <p>穿衣建议：{{message}}</p>
+        <p><button @click="add(5)">增加温度</button><button @click="cut(5)">减少温度</button></p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                count: 24,
+                message: "夹克长裙"
+            },
+            methods: {
+                add: function (num) {
+                    this.count += num;
+                },
+                cut: function (num) {
+                    this.count -= num;
+                }
+            },
+            computed: {
+                newCount: function () {
+                    return this.count + "°C";
+                }
+            },
+            watch: {
+                // count: function (newVal, olVal) {
+                //     if (newVal > 26) {
+                //         this.message = "T恤短袖";
+                //     } else if (newVal > 0) {
+                //         this.message = "夹克长裙";
+                //     } else {
+                //         this.message = "棉衣羽绒服";
+                //     }
+                // }
+            }
+        })
+        app.$watch("count", function (newVal, olVal) {
+            if (newVal > 26) {
+                this.message = "T恤短袖";
+            } else if (newVal > 0) {
+                this.message = "夹克长裙";
+            } else {
+                this.message = "棉衣羽绒服";
+            }
+        })
+    </script>
+</body>
+
+</html>

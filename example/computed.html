@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed 计算选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>computed 计算选项</h1>
+    <hr>
+    <div id="app">
+        <p>{{newPrice}}</p>
+        <ul>
+            <li v-for="item in newNews">{{item.title}}-{{item.data}}</li>
+        </ul>
+    </div>
+    <script>
+        var news = [
+            {title:"内容1", data:"2019-1-13"},
+            {title:"内容2", data:"2019-1-14"},
+            {title:"内容3", data:"2019-1-14"},
+            {title:"内容4", data:"2019-1-15"},
+        ];
+        var app = new Vue({
+            el : "#app",
+            data : {
+                price : 100,
+                news : news
+            },
+            computed : {
+                newPrice : function () {
+                    return "￥" + this.price + "元"
+                },
+                newNews : function () {
+                    return this.news.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+</html>

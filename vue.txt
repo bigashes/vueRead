@@ -106,3 +106,12 @@ var app = new Vue({
 })
 
 component标签 <component></component> 是用来动态显示自定义标签的，通过is属性来选择显示哪一个标签is="componentA"，这个属性也可以绑定v-bind:is="who"
+
+2019-1-13
+propsData 拓展传参 在实例化拓展时传递参数 new header_a({propsData:{a:1}}),a为参数名，1位参数，extend中需要props:["a"]来接收参数，在extend构造器中用this.a就可得到，也可以中{{a}}显示原始
+computed 计算选项 在显示数据时计算，必须数据是100，但显示￥100元，不改变原始数据 computed : {newPrice:function(){return "￥" + this.price + "元"}}
+methods 方法选项 @click="add(1, $event)" methods : {add:function (num, event) {this.price++}} 传参，$event 是鼠标的event参数 .native 修饰符 @click.native="add" 调用原生的add 在作用域外调用方法app.add()
+watch 监听选项 监听某个变量的该表 在构造器内实现watch : {count:function(newVal, oldVal){console.log(newVal)}} 在构造器外部实现 app.$watch("count", function(newVal, oldVal){console.log(newVal)})
+mixins 混入选项 不改变构造器结构 混入新的方法 构造器混入 mixins : {updated : function (){console.log("1")}} 全局混入Vue.mixin({updated : function (){console.log("2")}) 顺序 全局混入>局部混入>原生
+extends 拓展选项 与混入选项差不多 var extendObj = {updated : function (){console.log(1)}} 构造器中 extends: extendObj 注意 这是对象，不是数组，如果拓展相同的方法 只会执行原始的方法，拓展的方法无效果，混入也是这样 顺序 拓展>原生
+delimiters 改变插值的形式 原始是{{name}} 构造器中 delimiters:["${", "}"] 变成${name} 
