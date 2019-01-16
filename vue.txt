@@ -115,3 +115,7 @@ watch 监听选项 监听某个变量的该表 在构造器内实现watch : {cou
 mixins 混入选项 不改变构造器结构 混入新的方法 构造器混入 mixins : {updated : function (){console.log("1")}} 全局混入Vue.mixin({updated : function (){console.log("2")}) 顺序 全局混入>局部混入>原生
 extends 拓展选项 与混入选项差不多 var extendObj = {updated : function (){console.log(1)}} 构造器中 extends: extendObj 注意 这是对象，不是数组，如果拓展相同的方法 只会执行原始的方法，拓展的方法无效果，混入也是这样 顺序 拓展>原生
 delimiters 改变插值的形式 原始是{{name}} 构造器中 delimiters:["${", "}"] 变成${name} 
+
+2019-1-16
+调用jq方法很简单，直接用就行，外部调用方法 app.add() 即可 app实例 add() 方法
+实例 extend $mount 挂载 $destroy 卸载 $forceUpdate 更新 $nextTick 数据修改

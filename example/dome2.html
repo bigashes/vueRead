@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HollerWorld</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <h1>Hellor World</h1>
+    <hr>
+    <div id="app"></div>
+    <button onclick="destroy()">卸载</button>
+    <button onclick="reload()">刷新</button>
+    <button onclick="tick()">更改数据</button>
+    <script>
+        var app = Vue.extend({
+            template : "<p>{{message}}</p>",
+            data : function (){
+                return {
+                    message : "hw"
+                }
+            },
+            mounted : function () {
+                console.log("挂在了")
+            },
+            destroyed : function () {
+                console.log("销毁之后")
+            },
+            updated : function () {
+                console.log("刷新之后")
+            }
+        })
+        var vm = new app().$mount("#app");
+
+        function destroy(){
+            vm.$destroy();
+        }
+
+        function reload(){
+            vm.$forceUpdate();
+        }
+
+        function tick(){
+            vm.message = "2123";
+            vm.$nextTick(function(){
+                console.log("更新完成")
+            })
+        }
+    </script>
+</body>
+</html>
