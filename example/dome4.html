@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>内置组件 slot</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>内置组件 slot</h1>
+    <hr>
+    <div id="app">
+        <blog>
+            <span slot="name">{{blogData.name}}</span>
+            <span slot="url">{{blogData.url}}</span>
+            <span slot="skill">{{blogData.skill}}</span>
+        </blog>
+    </div>
+    <template id="blog">
+        <div>
+            <p>名称：<slot name="name"></slot></p>
+            <p>网址：<slot name="url"></slot></p>
+            <p>技能：<slot name="skill"></slot></p>
+        </div>
+    </template>
+    <script>
+        var blog = {
+            template : "#blog"
+        }
+        var app = new Vue({
+            el : "#app",
+            data : {
+                blogData : {
+                    name : "博客",
+                    url : "http://www.baidu.com",
+                    skill : "全栈"
+                }
+            },
+            components : {
+                "blog" : blog
+            }
+        })
+    </script>
+</body>
+</html>

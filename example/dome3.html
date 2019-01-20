@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绑定事件</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>绑定事件</h1>
+    <hr>
+    <div id="app">
+        {{num}}
+        <p><button @click="add">add</button></p>
+    </div>
+    <p><button onClick="jian()">jian</button></p>
+    <p><button onClick="jianOnce()">jianOnce</button></p>
+    <p><button onClick="off()">off</button></p>
+
+    <script>
+        var app = new Vue({
+            el : "#app",
+            data : {
+                num : 0
+            },
+            methods : {
+                add : function (){
+                    this.num++;
+                }
+            }
+        })
+
+        app.$on("jian", function () {
+            this.num--;
+        })
+
+        app.$once("jianOnce", function (){
+            this.num--;
+        })
+
+        function jian(){
+            app.$emit("jian");
+        }
+
+        function jianOnce(){
+            app.$emit("jianOnce");
+        }
+
+        function off(){
+            app.$off("jian");
+        }
+
+
+
+        
+
+    </script>
+</body>
+</html>

@@ -119,3 +119,7 @@ delimiters 改变插值的形式 原始是{{name}} 构造器中 delimiters:["${"
 2019-1-16
 调用jq方法很简单，直接用就行，外部调用方法 app.add() 即可 app实例 add() 方法
 实例 extend $mount 挂载 $destroy 卸载 $forceUpdate 更新 $nextTick 数据修改
+
+2019-1-20
+绑定事件 app.$on("方法名", fucntion (){}), 只绑定只一次事件 app.$once("方法名", function () {}), 外部调用事件 app.$emit("方法名"), 解除绑定事件 app.$off("方法名")，注意，只能用于拓展方法，app内使用v-on:click="jian" 就无效了
+slot 组件中更加方便的数据传输  传递<span slot="name">{{blogData.name}}</span>  接收<slot name="name"></slot>
