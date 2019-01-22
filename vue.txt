@@ -199,3 +199,61 @@ url 传输 <router-link to="/new/12/aaaaa">跳转</router-link>
     path : "/getNew/:id/:title",
     redirect : "/new/:id(\\d+)/:title"
 }
+
+2019-1-22
+alias 别名 另一个路由 
+{
+    path : "/hello",
+    component : Hello,
+    alias : "/helloraaaa"
+}
+
+过度动画 
+<transition name="fade" mode="out-in">
+    <router-view/>
+</transition>
+name 定义 fade 会生成 四个css
+fade-enter:进入过渡的开始状态，元素被插入时生效，只应用一帧后立刻删除。
+fade-enter-active:进入过渡的结束状态，元素被插入时就生效，在过渡过程完成后移除。
+fade-leave:离开过渡的开始状态，元素被删除时触发，只应用一帧后立刻删除。
+fade-leave-active:离开过渡的结束状态，元素被删除时生效，离开过渡完成后被删除。 
+mode 定义 out-in 上一个页面出后下一个页面才进 in-out 下一个页面进后上一个页面出
+
+url显示方式
+在路由管理js中添加
+mode : "history"(用这个) || "hash" (默认)
+history 就是和正常的url一样
+
+404页面
+添加路由
+{
+    path : "*",
+    name : "error",
+    component: Error
+}
+* 就是全都不匹配
+
+路由中的钩子函数（回调函数）
+{
+    path : "*",
+    name : "error",
+    component: Error,
+    beforEnter: function (to, from, next) {
+        next();
+    }
+}
+
+页面里的钩子函数
+beforRouteEnter: function (to, from, next) {
+    next();
+},
+beforRouteLeave: function (to, from, next) {
+    next();
+}
+
+后退
+this.$router.go(-1)
+前进
+this.$router.go(1)
+前往
+this.$router.push("/params/10/伤心")
