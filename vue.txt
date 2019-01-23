@@ -257,3 +257,62 @@ this.$router.go(-1)
 this.$router.go(1)
 前往
 this.$router.push("/params/10/伤心")
+
+2019-1-23
+vuex 学习 (类似一个持久化全局 静态类)
+安装 npm install vuex --save (--save = 生产环境使用)
+在src 创建 vuex/store.js 
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+//状态
+const state = {
+    count : 0
+}
+//同步修改状态方法集
+const mutations = {
+    add(store, num){
+        store.state.count+=num;
+    },
+    reduce(store) {
+        store.state.count--;
+    }
+}
+//数据过滤方法集
+const getters = {
+    count: (state) => state.count+=10
+}
+//异步修改状态方法
+const actions = {
+    addAction(context){
+        context.commit("add", 10)
+    },
+    reduce({commit}){
+        commit("reduce")
+    }
+}
+export default new Vuex.Store({
+    state, mutation, getters, actions
+})
+
+//使用
+import store from '@/vuex/store'
+import {mapState, mapMutations, mapGetters, mapActions} from 'vuex'
+
+模板中 {{$store.state.count}}
+@click="$store.commit('add', 10)"
+@click="$store.commit('refuct')"
+
+computed : {
+    ...mapState(["count"]),
+    ...mapGetters(["count"])
+},
+methods : {
+    ...mapMutations(["add", "reduce"]),
+    ...mapActions(["addAction", "reduceAction"])
+}
+
+{{count}}
+@click="add"
+@click="addAction"
